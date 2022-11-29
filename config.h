@@ -2,7 +2,7 @@
 #define CONFIG_H_
 
 #define STUB
-//#define TEST
+#define TEST
 
 
 #endif
