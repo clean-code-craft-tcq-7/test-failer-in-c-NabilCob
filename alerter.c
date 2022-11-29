@@ -41,13 +41,15 @@ void alertInCelcius(float farenheit) {
 
 //Main function
 int main(void){
+     alertInCelcius(400.5);
 #ifdef TEST
-    alertInCelcius(400.5);
     assert(alertFailureCount == 1);
-    alertInCelcius(303.6);
-    assert(alertFailureCount == 2);
 #endif
-
+    
+    alertInCelcius(303.6);
+#ifdef TEST
+    assert(alertFailureCount == 1);
+#endif
     printf("\n alerter file - Bye");
 }
 
