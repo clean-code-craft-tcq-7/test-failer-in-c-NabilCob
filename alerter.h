@@ -1,8 +1,6 @@
 #ifndef ALERTER_H_
 #define ALERTER_H_
 
-#include "Config.h"
-
 //Structure, enum and macro definitions
 
 
