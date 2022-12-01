@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <assert.h>
-#include "config.h"
 #include "misaligned.h"
 
 
@@ -12,11 +11,10 @@ int printColorMap(char * (*GetExpectedColorPair)(int, int)) {
     int i = 0, j = 0;
     char colorPairNames[MAX_COLORPAIR_NAME_CHARS];
     memset(colorPairNames, 0, MAX_COLORPAIR_NAME_CHARS);
-
-
     for(i = 0; i < 5; i++) {
         for(j = 0; j < 5; j++) {
             sprintf(colorPairNames, "%d | %s | %s\n", i * 5 + j, majorColor[i], minorColor[i]);
+            //Assertion for pairnumber and color pattern
             assert(memcmp(colorPairNames, GetExpectedColorPair(i, j), MAX_COLORPAIR_NAME_CHARS)
                             == 0);
 
@@ -41,11 +39,10 @@ char* GetExpectedColorPair(int majorIndex, int minorIndex){
 
 //Main function
 int main(void){
-
-#ifdef TEST
+    
+    //Assertion for total color patterns
     assert(printColorMap(GetExpectedColorPair) == 25);
-#endif
-
+    
     printf("\n misaligned file - Bye");
     return 0;
 }
