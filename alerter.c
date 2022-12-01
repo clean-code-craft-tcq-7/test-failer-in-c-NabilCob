@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <assert.h>
-#include "config.h"
 #include "alerter.h"
 
 //Variable to holder failure count on alert
 int alertFailureCount = 0;
+//Function handler for network alerter function
+networkAlerter_Funcptr networkkAlert= networkAlertStub;
 
-#ifdef STUB
 // Stub function for network alerter
 int networkAlertStub(float celcius) {
     printf("ALERT: Temperature is %.1f celcius.\n", celcius);
@@ -20,15 +20,14 @@ int networkAlertStub(float celcius) {
         return 200;
     }
 }
-#endif
 
 //Function to caculate Celcius from farenheit
 void alertInCelcius(float farenheit) {
     float celcius = (farenheit - 32) * 5 / 9;
     int returnCode;
-#ifdef STUB
-    returnCode = networkAlertStub(celcius);
-#endif
+    if(networkkAlert != 0){
+        returnCode = (*networkkAlert)(celcius);
+    }
     if (returnCode != 200) {
         // non-ok response is not an error! Issues happen in life!
         // let us keep a count of failures to report
@@ -41,16 +40,13 @@ void alertInCelcius(float farenheit) {
 
 //Main function
 int main(void){
-     alertInCelcius(400.5);
-#ifdef TEST
-    assert(alertFailureCount == 1);
-#endif
-    
+    alertInCelcius(97);
+    alertInCelcius(100.5);
     alertInCelcius(303.6);
-#ifdef TEST
     assert(alertFailureCount == 1);
-#endif
+   
     printf("\n alerter file - Bye");
+    return 0;
 }
 
 
