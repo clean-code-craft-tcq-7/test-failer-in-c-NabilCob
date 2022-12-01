@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <assert.h>
-#include "config.h"
 #include "tshirts.h"
 
 
@@ -18,8 +17,8 @@ char size(int cms) {
 }
 
 //Main Function
-int main(void){
-#ifdef TEST
+int main(void)
+{
     assert(size(37) == 'S');
     assert(size(40) == 'M');
     assert(size(43) == 'L');
@@ -27,7 +26,6 @@ int main(void){
     assert(size(-1) == '\0');
     assert(size(38) == 'M');
     assert(size(42) == 'L');
-#endif
 
     printf("n tshirts file - Bye");
     return 0;
