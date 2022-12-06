@@ -5,7 +5,7 @@
 #define MAX_COLORPAIR_NAME_CHARS (16)
 
 //Function declaration
-int printColorMap(char * (*GetExpectedColorPair)(int, int));
-char *GetExpectedColorPair(int i, int j);
+int printColorMap(void (*GetColorPattern)(char*, int, int));
+void GetColorPattern(char* colorPattern, int majorIndex, int minorIndex);
 
 #endif
