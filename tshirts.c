@@ -1,22 +1,33 @@
 #include <stdio.h>
 #include <assert.h>
+#include "tshirts.h"
 
+
+//Function returns the size
 char size(int cms) {
     char sizeName = '\0';
-    if(cms < 38) {
-        sizeName = 'S';
-    } else if(cms > 38 && cms < 42) {
-        sizeName = 'M';
-    } else if(cms > 42) {
-        sizeName = 'L';
+    if(cms > 0){
+        if(cms < 38){
+            sizeName = 'S';
+        } else if(cms >= 38 && cms < 42){
+            sizeName = 'M';
+        } else if(cms >= 42) {
+            sizeName = 'L';
+        }
     }
     return sizeName;
 }
-
-int main() {
+//Main Function
+int main(void)
+{
     assert(size(37) == 'S');
     assert(size(40) == 'M');
     assert(size(43) == 'L');
-    printf("All is well (maybe!)\n");
+    assert(size(0) == '\0');
+    assert(size(-1) == '\0');
+    assert(size(38) == 'M');
+    assert(size(42) == 'L');
+
+    printf("\ntshirts file - Bye");
     return 0;
 }

@@ -10,17 +10,23 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: tshirts fail
+    - name: tshirts build
       run: |
         g++ -Wall -Wextra -Werror tshirts.c -o tshirts.out
-        bash .github/workflows/expectfail.sh ./tshirts.out
-
-    - name: misaligned fail
+        
+    - name : tshirts run
+      run: ./tshirts.out
+      
+    - name: misaligned build
       run: |
         g++ -Wall -Wextra -Werror misaligned.c -o misaligned.out
-        bash .github/workflows/expectfail.sh ./misaligned.out
-
-    - name: alerter fail
+        
+    - name: misaligned run
+      run: ./misaligned.out
+      
+    - name: alerter build
       run: |
         g++ -Wall -Wextra -Werror alerter.c -o alerter.out
-        bash .github/workflows/expectfail.sh ./alerter.out
+    
+    - name : alerter run
+      run: ./alerter.out
